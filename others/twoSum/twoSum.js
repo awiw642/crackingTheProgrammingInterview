@@ -5,7 +5,7 @@ You may assume that each input would have exactly one solution, and you may not 
 Output: Array of indices
 Input: Array of numbers, sum target
 Complexities/Constraints: none
-Example: 
+Example:
 * ([2, 4, 6, 7], 10) => [[1, 2]]
 * ([6, 5, 7, 2], 9) => [[2, 3]]
 * ([6, 4, 5, 4], 10) => [[0, 1]]
@@ -37,7 +37,7 @@ const twoSum = (arr, target) => {
     }
   }
   return result;
-}
+};
 
 // Attempt to use object to reduce the time complexity. Not successful yet with the same multiple values
 // const twoSum = (arr, target) => {
