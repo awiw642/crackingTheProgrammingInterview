@@ -39,4 +39,28 @@ const twoSum = (arr, target) => {
   return result;
 }
 
+// Attempt to use object to reduce the time complexity. Not successful yet with the same multiple values
+// const twoSum = (arr, target) => {
+//   const map = {};
+//   const result = [];
+
+//   arr.forEach((number, index) => {
+//     map[number] = {};
+//     map[number].index = index;
+//     map[number].checked = false;
+//   });
+
+//   console.log('Map is: ', map);
+
+//   for (let i = 0; i < arr.length; i++) {
+//     const remainingVal = target - arr[i];
+//     if (map[remainingVal] !== undefined && map[remainingVal].checked === false && map[remainingVal].index !== i) {
+//       result.push([i, map[remainingVal].index]);
+//       map[arr[i]].checked = true;
+//       map[remainingVal].checked = true;
+//     }
+//   }
+//   return result;
+// }
+
 module.exports = twoSum;
