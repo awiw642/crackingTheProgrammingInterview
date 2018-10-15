@@ -1,4 +1,4 @@
-const { Node, LinkedList, addTwoNumbers } = require('./addTwoNumbers');
+import { Node, LinkedList, addTwoNumbers } from './addTwoNumbers';
 
 test('Should return true when the addition is correct', () => {
   const list1 = new LinkedList();
