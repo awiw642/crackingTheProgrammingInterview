@@ -1,15 +1,23 @@
-function arrayToList(array) {
-  if (array.length < 1 || !Array.isArray(array)) { return 'Please provide a valid array'; }
-  if (array.length === 1) {
-    return {
-      value: array[0],
-      rest: null,
-    };
+// function arrayToList(array) {
+//   if (array.length < 1 || !Array.isArray(array)) { return 'Please provide a valid array'; }
+//   if (array.length === 1) {
+//     return {
+//       value: array[0],
+//       rest: null,
+//     };
+//   }
+//   return {
+//     value: array[0],
+//     rest: arrayToList(array.slice(1)),
+//   };
+// }
+
+function arrayToList(arr) {
+  let list = null;
+  for (let i = arr.length - 1; i >= 0; i--) {
+    list = { value: arr[i], rest: list };
   }
-  return {
-    value: array[0],
-    rest: arrayToList(array.slice(1)),
-  };
+  return list;
 }
 
 function prepend(element, list) {
@@ -17,36 +25,23 @@ function prepend(element, list) {
 }
 
 function listToArray(list) {
-  let filled = true;
-  const resultArray = [];
-  let currentNode = list;
-  while (filled) {
-    resultArray.push(currentNode.value);
-    if (currentNode.rest) {
-      currentNode = currentNode.rest;
-    } else {
-      filled = false;
-    }
-  }
-  return resultArray;
+  const result = [];
+  let currentList = list;
+  do {
+    result.push(currentList.value);
+    currentList = currentList.rest;
+  } while (currentList);
+  return result;
 }
 
-function nth(list, number) {
-  let position = 0;
-  let currentList = list;
-  let { value } = currentList;
-
-  while (currentList) {
-    if (value === number) {
-      return position;
-    }
-    currentList = currentList.rest;
-    if (currentList) {
-      ({ value } = currentList);
-    }
-    position += 1;
+function nth(list, index) {
+  if (!list) {
+    return undefined;
   }
-  return undefined;
+  if (index === 0) {
+    return list.value;
+  }
+  return nth(list.rest, index - 1);
 }
 
 export {

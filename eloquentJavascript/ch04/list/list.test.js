@@ -5,14 +5,14 @@ import {
   nth,
 } from './list';
 
-test('arrayToList: Return an error message when the provided value is invalid', () => {
-  const array = [];
-  const otherObject = { list: 'test' };
-  expect(arrayToList(array)).toBe('Please provide a valid array');
-  expect(arrayToList(otherObject)).toBe('Please provide a valid array');
-});
+// test('arrayToList: Return an error message when the provided value is invalid', () => {
+//   const array = [];
+//   const otherObject = { list: 'test' };
+//   expect(arrayToList(array)).toBe('Please provide a valid array');
+//   expect(arrayToList(otherObject)).toBe('Please provide a valid array');
+// });
 
-test('arrayToList: Returned object should have the required properties', () => {
+test('arrayToList: Returnded object should have the required properties', () => {
   const array = [1, 2, 3, 4];
   const list = arrayToList(array);
   expect(list).toHaveProperty('value');
@@ -51,10 +51,10 @@ test('listToArray: Should return an array of numbers', () => {
   expect(resultArray).toContain(22);
 });
 
-test('nth: Should return a value or undefined', () => {
-  const list = { value: 1, rest: { value: 2, rest: { value: 3, rest: { value: 4, rest: null } } } };
-  const validValue = 3;
-  const invalidValue = 5;
-  expect(nth(list, validValue)).toBe(2);
-  expect(nth(list, invalidValue)).toBe(undefined);
+test('nth: Should return a value on the given index or undefined if index is invalid', () => {
+  const list = arrayToList([1, 2, 3, 4, 5, 6]);
+  const index1 = 3;
+  const index2 = 8;
+  expect(nth(list, index1)).toBe(4);
+  expect(nth(list, index2)).toBe(undefined);
 });
