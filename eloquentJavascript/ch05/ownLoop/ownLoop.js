@@ -1,8 +1,6 @@
 export default function ownLoop(val, testFunction, updateFunction, bodyFunction) {
-  let pivot = val;
-  while (testFunction(pivot)) {
-    bodyFunction(pivot);
-    pivot = updateFunction(pivot);
+  for (let y = val; testFunction(y); y = updateFunction(y)) {
+    bodyFunction(y);
   }
   return false;
 }
