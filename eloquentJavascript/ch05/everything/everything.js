@@ -3,6 +3,6 @@ export function everything(array, test) {
   return passed.length === array.length;
 }
 
-export function everythingWithSome() {
-  return false;
+export function everythingWithSome(array, test) {
+  return !array.some(n => !test(n));
 }
