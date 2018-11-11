@@ -57,6 +57,9 @@ class Matrix {
 
 // MatrixIterator class below provides an iterator to scan through the provided
 // matrix
+
+// To create an iterator use object[Symbol.iterator], which should return an
+// object with a next function (iterables)
 class MatrixIterator {
     constructor(matrix) {
         this.x = 0; 
