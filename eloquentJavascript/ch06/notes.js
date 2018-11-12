@@ -55,6 +55,11 @@ class Matrix {
     }
 }
 
+const matrixTest = new  Matrix(5, 5);
+console.log('MatrixTest.get(2, 3): ', matrixTest.get(2, 3));
+matrixTest.set(2, 2, 5);
+console.log('MatrixTest.get(2, 2): ', matrixTest.get(2, 2));
+
 // MatrixIterator class below provides an iterator to scan through the provided
 // matrix
 
@@ -121,3 +126,22 @@ console.log(temp.fahrenheit);
 temp.fahrenheit = 86;
 console.log(temp.celcius);
 console.log(Temperature.fromFahrenheit(86));
+
+class SymmetricMatrix extends Matrix {
+    constructor(size, element = (x, y) => undefined) {
+        super(size, size, (x, y) => {
+            if (x < y) return element(x, y);
+            else return element(x, y);
+        }); 
+    }
+
+    set(x, y, value) {
+        super.set(x, y, value); 
+        if (x != y) {
+            super.set(y, x, value); 
+        }
+    }
+}
+
+let matrix = new SymmetricMatrix(5, (x, y) => `${x},${y}`);
+console.log(matrix.get(2, 3));
