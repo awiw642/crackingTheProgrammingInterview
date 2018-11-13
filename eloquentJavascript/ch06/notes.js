@@ -145,3 +145,8 @@ class SymmetricMatrix extends Matrix {
 
 let matrix = new SymmetricMatrix(5, (x, y) => `${x},${y}`);
 console.log(matrix.get(2, 3));
+
+console.log(new SymmetricMatrix(2) instanceof SymmetricMatrix);
+console.log(new SymmetricMatrix(2) instanceof Matrix);
+console.log(new Matrix(2, 2) instanceof SymmetricMatrix);
+console.log([1] instanceof Array);
