@@ -15,4 +15,7 @@ export default class Vec {
         const y = this.y - vector.y;
         return new Vec(x, y);
     }
+    get length() {
+        return Math.sqrt(Math.pow(this.x, 2) +  Math.pow(this.y, 2)); 
+    }
 }
