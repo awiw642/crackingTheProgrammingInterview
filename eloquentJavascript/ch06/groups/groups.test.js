@@ -21,3 +21,20 @@ test('Group has a \'from\' function that creates a new group out of an iterables
     expect(newGroup.has('Rolando')).toBeTruthy();
     expect(newGroup.has('Rondo')).toBeFalsy();
 });
+
+test('Able to loop through group with for of loop', () => {
+    const group = new Group();
+    group.add('John');
+    group.add('Mathias');
+    group.add('Lucas');
+    group.add('Roberto');
+    group.add('Martinez');
+    group.add('Ramos');
+
+    const mockFunction = jest.fn();
+    for (let element of group) {
+        console.log('Element is: ', element);
+        mockFunction(element); 
+    }
+    expect(mockFunction).toHaveBeenCalledTimes(6);
+});

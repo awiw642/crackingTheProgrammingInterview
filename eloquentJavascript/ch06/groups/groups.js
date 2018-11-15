@@ -1,22 +1,49 @@
 export default class Group {
     constructor() {
-        this.group = {}; 
+        this.group = []; 
     }
     add(key) {
-        if (!this.group[key]) {
-            this.group[key] = true; 
+        if (!this.group.includes(key)) {
+            this.group.push(key);
         } 
     }
     delete(key) {
-        if (this.group[key]) {
-            delete this.group[key]; 
-        } 
+        this.group = this.group.filter((element) => {
+            return element !== key;  
+        });
     }
     has(key) {
-        return !!this.group[key]; 
+        return this.group.includes(key); 
     }
     static from(iterables) {
-    // Create a new group, iterate through the iterables with for..of loop, and
-        // add each element to the new group
+        const newGroup = new Group();
+        for (let element of iterables) {
+            newGroup.add(element); 
+        }
+        return newGroup;
     }
+}
+
+
+class GroupIterator {
+    constructor(group) {
+        this.group = group; 
+        this.count = 0;
+    }
+
+    next() {
+        if (this.count <= this.group.length) {
+            const result = { value: this.group[this.count], done: false  }; 
+            this.count++;
+            return result;
+        } 
+        return ({
+            value: this.group[this.count], 
+            done: true
+        });
+    }
+}
+
+Group.prototype[Symbol.iterator] = function() {
+    return new GroupIterator(this);
 }
