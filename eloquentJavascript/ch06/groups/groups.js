@@ -32,13 +32,13 @@ class GroupIterator {
     }
 
     next() {
-        if (this.count <= this.group.length) {
-            const result = { value: this.group[this.count], done: false  }; 
+        if (this.count < this.group.group.length) {
+            const result = { value: this.group.group[this.count], done: false  }; 
             this.count++;
             return result;
         } 
         return ({
-            value: this.group[this.count], 
+            value: this.group.group[this.count], 
             done: true
         });
     }

@@ -33,7 +33,6 @@ test('Able to loop through group with for of loop', () => {
 
     const mockFunction = jest.fn();
     for (let element of group) {
-        console.log('Element is: ', element);
         mockFunction(element); 
     }
     expect(mockFunction).toHaveBeenCalledTimes(6);
