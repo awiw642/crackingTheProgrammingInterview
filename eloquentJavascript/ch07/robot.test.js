@@ -5,4 +5,5 @@ test('roadGraph should contains elements from the roads array', () => {
     expect(roadGraph).toHaveProperty('Alice\'s House');
     expect(roadGraph).toHaveProperty('Bob\'s House');
     expect(roadGraph).toHaveProperty('Cabin');
+    expect(roadGraph).toHaveProperty('Post Office');
 });

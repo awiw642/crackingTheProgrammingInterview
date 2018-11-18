@@ -25,7 +25,12 @@ function buildGraph(edges) {
     return graph;
 }
 
-export const roadGraph = buildGraph(roads);
+const roadGraph = buildGraph(roads);
+
+function randomPick(array) {
+    let choice = Math.floor(Math.random() * array.length);
+    return array[choice];
+}
 
 
 class VillageState {
@@ -45,4 +50,70 @@ class VillageState {
             return new VillageState(destination, parcels);
         } 
     }
+
+    static random(parcelCount = 5) {
+        let parcels = []; 
+        for (let i = 0; i < parcelCount; i++) {
+            let address = randomPick(Object.keys(roadGraph)); 
+            let place;
+            do {
+                place = randomPick(Object.keys(roadGraph)); 
+            } while(place == address);
+            parcels.push({place, address});
+        }
+        return new VillageState("Post Office", parcels);
+    }
 }
+
+let first = new VillageState(
+    "Post Office", 
+    [{place: "Post Office", address: "Alice's House"}]
+);
+let next = first.move("Alice's House");
+
+function runRobot(state, robot, memory) {
+    for (let turn = 0;; turn++) {
+        if (state.parcels.length == 0) {
+            console.log(`Done in ${turn} turns`); 
+            break;
+        } 
+        let action = robot(state, memory);
+        state = state.move(action.direction);
+        memory = action.memory;
+        console.log(`Moved to ${action.direction}`);
+    }
+}
+
+console.log(next.place);
+
+function randomRobot(state) {
+    return {direction: randomPick(roadGraph[state.place])};
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// console.log(next.place);
+// console.log(next.parcels);
+// console.log(first.place);
+
+// Side Notes
+let object = Object.freeze({value: 5});
+// object.value = 10;  This throws an error on strict mode
+console.log('Object if frozen: ', Object.isFrozen(object));
+
+
+export { roadGraph };
