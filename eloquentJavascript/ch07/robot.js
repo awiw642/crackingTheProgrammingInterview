@@ -25,7 +25,6 @@ function buildGraph(edges) {
     return graph;
 }
 
-const roadGraph = buildGraph(roads);
 
 function randomPick(array) {
     let choice = Math.floor(Math.random() * array.length);
@@ -47,6 +46,7 @@ class VillageState {
                 if (p.place != this.place) return p; 
                 return {place: destination, address: p.address};
             }).filter(p => p.place != p.address); 
+
             return new VillageState(destination, parcels);
         } 
     }
@@ -65,11 +65,6 @@ class VillageState {
     }
 }
 
-let first = new VillageState(
-    "Post Office", 
-    [{place: "Post Office", address: "Alice's House"}]
-);
-let next = first.move("Alice's House");
 
 function runRobot(state, robot, memory) {
     for (let turn = 0;; turn++) {
@@ -78,13 +73,12 @@ function runRobot(state, robot, memory) {
             break;
         } 
         let action = robot(state, memory);
+        console.log('Robot memory: ', action.memory);
         state = state.move(action.direction);
         memory = action.memory;
         console.log(`Moved to ${action.direction}`);
     }
 }
-
-console.log(next.place);
 
 function randomRobot(state) {
     return {direction: randomPick(roadGraph[state.place])};
@@ -92,7 +86,6 @@ function randomRobot(state) {
 
 // start up the virtual world
 
-runRobot(VillageState.random(), randomRobot);
 
 const mailRoute = [
     "Alice's House", "Cabin", "Alice's House", "Bob's House", "Town Hall", "Daria's House", "Ernie's House", "Grete's House", "Shop", "Grete's House", "Farm", "Marketplace", "Post Office"
@@ -111,21 +104,46 @@ function findRoute(graph, from, to) {
         let {at, route} = work[i]; 
         for (let place of graph[at]) {
             if (place == to) return route.concat(place); 
-            if (!work.some(w -> w.at == place)) {
+            if (!work.some(w => w.at == place)) {
                 work.push({at: place, route: route.concat(place)}); 
             }
         }
     }
 }
 
+function goalOrientedRobot({place, parcels}, route) {
+    if (route.length == 0) {
+        let parcel = parcels[0]; 
+        if (parcel.place != place) {
+            route = findRoute(roadGraph, place, parcel.place); 
+        } else {
+            route = findRoute(roadGraph, place, parcel.address); 
+        } 
+    }
+    return {direction: route[0], memory: route.slice(1)};
+}
+
+// function compareRobot(robot1, memory1, robot2, memory2) {
+//     let task = VillageState.random(100);
+//     while() {
+    
+//     }
+// }
 
 
 
+const roadGraph = buildGraph(roads);
 
 
+let first = new VillageState(
+    "Post Office", 
+    [{place: "Post Office", address: "Alice's House"}]
+);
+
+let next = first.move("Alice's House");
 
 
-
+runRobot(VillageState.random(), randomRobot);
 
 
 // console.log(next.place);
@@ -138,4 +156,4 @@ let object = Object.freeze({value: 5});
 console.log('Object if frozen: ', Object.isFrozen(object));
 
 
-export { roadGraph };
+exports = roadGraph;
