@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "flow": "flow"
   },
   "keywords": [],
   "author": "",
@@ -13,11 +14,14 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.6.1",
+    "babel-preset-flow": "^6.23.0",
     "eslint": "^5.9.0",
     "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-flowtype": "^3.2.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-react": "^7.11.1",
+    "flow-bin": "^0.87.0",
     "jest": "^23.6.0"
   },
   "dependencies": {
