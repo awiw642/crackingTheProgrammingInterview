@@ -5,6 +5,8 @@
   },
   "rules": {
     "no-plusplus": "off",
-    "allowElseIf": true
+    "allowElseIf": 0,
+    "no-else-return": 0,
+    "consistent-return": 0
   }
 }
