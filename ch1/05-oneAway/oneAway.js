@@ -1,6 +1,47 @@
-// export default function oneAway(stringOne, stringTwo) {
-  
-//   for (let y = 0; y < ) {
+export default function oneAway(stringOne, stringTwo) {
+  if (stringOne.length === stringTwo.length) {
+    return oneAwayReplace(stringOne, stringTwo);
+  }
+  if (stringOne < stringTwo) {
+    return oneAwayInsert(stringOne, stringTwo);
+  }
+  if (stringOne > stringTwo) {
+    return oneAwayInsert(stringTwo, stringOne);
+  }
+}
 
-  // }
-// }
+function oneAwayInsert(stringOne, stringTwo) {
+  let indexOne = 0;
+  let indexTwo = 0;
+  let status = true;
+
+  while (indexOne !== stringOne.length && indexTwo !== stringTwo.length) {
+    if (indexOne !== indexTwo && stringOne[indexOne] !== stringTwo[indexTwo]) {
+      status = false;      
+      break;
+    } else if (stringOne[indexOne] !== stringTwo[indexTwo]) {
+      indexOne++;
+    } else {
+      indexOne++;
+      indexTwo++;
+    }
+  }
+  return status;
+}
+
+function oneAwayReplace(stringOne, stringTwo) {
+  let replaceCount = 0;
+  for (let y = 0; y < stringOne.length; y++) {
+    if (stringOne[y] !== stringTwo[y]) {
+      replaceCount++;
+      if (replaceCount > 1) {
+        return false;
+      }
+    }
+  }
+  return true;
+}
+
+
+// Loop through the string and make sure the letter on the current index is the SyncManager.length
+// if it's not the same then replace it.
