@@ -1,4 +1,4 @@
-import oneAway from './oneAway';
+import { oneAway } from './oneAway';
 
 test('oneAway: Should return boolean', () => {
   const stringOne = 'bake';

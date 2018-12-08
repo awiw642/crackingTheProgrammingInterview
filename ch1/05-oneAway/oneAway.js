@@ -1,4 +1,36 @@
-export default function oneAway(stringOne, stringTwo) {
+export function oneAway(stringOne, stringTwo) {
+  let indexOne = 0;
+  let indexTwo = 0;
+  let edited = false;
+
+  if (Math.abs(stringOne.length - stringTwo.length) > 1) {
+    return false;
+  }
+
+  while (indexOne !== stringOne.length && indexTwo !== stringTwo.length) {
+    if (stringOne[indexOne] !== stringTwo[indexTwo]) {
+      if (edited) {
+        return false;
+      }
+
+      if (stringOne.length > stringTwo.length) {
+        indexOne++;
+      } else if (stringOne.length < stringTwo.length) {
+        indexTwo++;
+      } else {
+        indexOne++;
+        indexTwo++;
+      }
+      edited = true;
+    } else {
+      indexOne++;
+      indexTwo++;
+    }
+  }
+  return true;
+}
+
+export function xoneAway(stringOne, stringTwo) {
   if (stringOne.length === stringTwo.length) {
     return oneAwayReplace(stringOne, stringTwo);
   }
