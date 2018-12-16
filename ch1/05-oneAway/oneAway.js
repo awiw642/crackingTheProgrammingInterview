@@ -73,7 +73,3 @@ function oneAwayReplace(stringOne, stringTwo) {
   }
   return true;
 }
-
-
-// Loop through the string and make sure the letter on the current index is the SyncManager.length
-// if it's not the same then replace it.
