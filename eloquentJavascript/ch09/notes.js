@@ -26,7 +26,17 @@ value will be an array of [full match, first group match, last group match]
 
 function getDate(string) {
     let [_, month, day, year] = /(\d{1,2})-(\d{1,2})-(\d{4})/.exec(string);
-    // return new Date(year, month - 1, day);
+    return new Date(year, month - 1, day);
 }
 
-getDate(1-1-2018);
+console.log(getDate('1-1-2018'));
+
+console.log(/\.\Bdate/.test('test.date'));
+
+console.log('Borobudur'.replace(/[ou]/, 'a'));
+// The above only replaces the first occurrence of the matched elements.
+// To replace everything, use global.
+
+console.log('Liskov, Barbara\nMcCarthy, John\nWaddler, Phillip'.replace(/(\w+), (\w+)/g, '$2 $1'));
+
+console.log('barbara shevchenko'.match(/\w/g));
