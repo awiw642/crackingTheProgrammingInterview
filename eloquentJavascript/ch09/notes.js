@@ -23,3 +23,10 @@ console.log(/(\d)+(\w)+/.exec('2345abcd'));
 When running exec with parenthesis to specify the group, the return
 value will be an array of [full match, first group match, last group match]
 */
+
+function getDate(string) {
+    let [_, month, day, year] = /(\d{1,2})-(\d{1,2})-(\d{4})/.exec(string);
+    // return new Date(year, month - 1, day);
+}
+
+getDate(1-1-2018);
