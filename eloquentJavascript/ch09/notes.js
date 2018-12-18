@@ -68,3 +68,26 @@ function minusOne(match, amount, unit, offset) {
 }
 
 console.log(stock.replace(/(\d+) (\w+)/g, minusOne));
+
+
+// greedy RegExp
+
+function stripComments(code) {
+    return code.replace(/\/\/.*|\/\*[^]*\*\//g, '');
+}
+
+console.log(stripComments('1 + /* 2 */3'));
+console.log(stripComments('x = 10;// ten!'));
+console.log(stripComments('1 /* a */+/* b */ 1'));
+// the last one was wrong. Why?
+// it is because the [^]* character is considered greedy.
+// means it will match to the entire string first and then backtrack from there.
+// when it backtracks, it will find the second set of */ and will think that it is a match
+
+
+function stripCommentsTwo(code) {
+    return code.replace(/\/\/.*|\/\*[^]*?\*\//g, '');
+}
+console.log(stripCommentsTwo('1 /* a */+/* b */ 1'));
+// This one works because when you add ? character, you turn the RegExp to be non greedy.
+// Means they will match as little as possible first and then match more when needed.
