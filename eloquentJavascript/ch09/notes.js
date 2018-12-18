@@ -40,3 +40,31 @@ console.log('Borobudur'.replace(/[ou]/, 'a'));
 console.log('Liskov, Barbara\nMcCarthy, John\nWaddler, Phillip'.replace(/(\w+), (\w+)/g, '$2 $1'));
 
 console.log('barbara shevchenko'.match(/\w/g));
+
+let s = 'the cia and fbi';
+console.log(s.replace(/\b(fbi|cia)\b/g, str => str.toUpperCase()));
+// For the code above, notice that when global argument is not being passed, it is only gonna match the first match.
+
+let stock = '1 lemon, 2 cabbages, and 101 eggs';
+function minusOne(match, amount, unit, offset) {
+    /*
+     * The arguments being passed to a function in the replace method are set to
+     * the followings:
+        * full match
+        * match group 1, match group 2 (if any) ...
+        * offset (the index of the start of the match)
+     * */
+    console.log('match: ', match);
+    console.log('amount: ', amount);
+    console.log('unit: ', unit);
+    console.log('offset: ', offset);
+    amount = Number(amount) - 1;
+    if (amount === 1) {
+        unit = unit.slice(0, unit.length - 1); 
+    } else if (amount === 0) {
+        amount = 'no'; 
+    }
+    return amount + ' ' + unit;
+}
+
+console.log(stock.replace(/(\d+) (\w+)/g, minusOne));
