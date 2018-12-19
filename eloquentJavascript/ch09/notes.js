@@ -91,3 +91,38 @@ function stripCommentsTwo(code) {
 console.log(stripCommentsTwo('1 /* a */+/* b */ 1'));
 // This one works because when you add ? character, you turn the RegExp to be non greedy.
 // Means they will match as little as possible first and then match more when needed.
+
+// Dynamically creating RegExp objects
+
+// let name = 'harry';
+// let text = 'Harry is a suspicious character.';
+// let regexp = new RegExp('\\b(' + name + ')\\b', 'gi');
+// console.log(text.replace(regexp, '_$1_'));
+
+
+let name = 'dea+hl[]rd';
+let text = 'This dea+hl[]rd guy is super annoying.';
+let escaped = name.replace(/[\\[.+*?(){|^$]/g, '\\$&');
+
+// The search method
+console.log('   word'.search(/\S/));
+console.log('   '.search(/\S/));
+
+
+// The lastIndex property
+let pattern = /y/g;
+let match = pattern.exec('xyzzy');
+console.log(match.index);
+console.log(pattern.lastIndex);
+
+
+// Looping over matches
+let input = 'A string with 3 numbers in it... 42 and 88.';
+let number = /\b\d_\b/g;
+let matchTwo;
+while(matchTwo = number.exec(input)) {
+    console.log('test');
+    console.log('Found', matchTwo[0], 'at', matchTwo.index);
+}
+
+
