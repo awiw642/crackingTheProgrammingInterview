@@ -1,8 +1,7 @@
 // Map
 /*
-Object in Javascript can be used as a map function as well. However, using it as that 
-has some drawbacks. For example, as plain objects derive from Object.prototype, it 
-contains some of the properties from the prototype.
+Object in Javascript can be used as a map function as well. However, using it as that has some drawbacks. 
+For example, as plain objects derive from Object.prototype, it contains some of the properties from the prototype.
 */
 
 /*
@@ -60,11 +59,9 @@ console.log('MatrixTest.get(2, 3): ', matrixTest.get(2, 3));
 matrixTest.set(2, 2, 5);
 console.log('MatrixTest.get(2, 2): ', matrixTest.get(2, 2));
 
-// MatrixIterator class below provides an iterator to scan through the provided
-// matrix
+// MatrixIterator class below provides an iterator to scan through the provided matrix
 
-// To create an iterator use object[Symbol.iterator], which should return an
-// object with a next function (iterables)
+// To create an iterator use object[Symbol.iterator], which should return an object with a next function (iterables)
 class MatrixIterator {
     constructor(matrix) {
         this.x = 0; 
