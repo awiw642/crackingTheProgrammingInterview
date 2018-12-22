@@ -30,6 +30,8 @@ function request(nest, target, type, content) {
 
 // Seems like we can create promise by doing Promise.resolve.
 // So what is the difference when we do new Promise?
+// answer: Promise.resolve and Promise.reject are shortcut that we can use to create and already resolved or rejected promise.
+
 function requestType(name, handler) {
     defineRequest(name, (nest, content, source, callback) => {
         try {
@@ -54,3 +56,4 @@ function availableNeighbors(nest) {
     });
 }
 // What arguments does then in promise take?
+// answer: the first parameter is onFullfillment, the second is onRejection
