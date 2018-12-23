@@ -57,3 +57,56 @@ function availableNeighbors(nest) {
 }
 // What arguments does then in promise take?
 // answer: the first parameter is onFullfillment, the second is onRejection
+
+/*
+ 
+// Flooding
+import { everywhere } from './crow-tech';
+
+everywhere(nest => {
+    nest.state.gossip = [];
+});
+
+function sendGossip(nest, message, exceptFor = null) {
+    nest.state.gossip.push(message);
+    for (let neighbor of nest.neighbors) {
+        if (neighbor == exceptFor) continue;
+        request(nest,neighbor, 'gossip', message);
+    }
+}
+
+requestType('gossip', (nest, message, source) => {
+    if (nest.state.gossip.includes(message)) return;
+    console.log(
+        `${nest.name} received gossip '${message}' from ${source}`
+    );
+    sendGossip(nest, message, source);
+});
+ * */
+
+function anyStorage(nest, source, name) {
+    if (source == nest.name) return storage(nest, name);
+    else return routeRequest(nest, source, 'storage', name);
+}
+
+async function chicks(nest, year) {
+    let list = '';
+    await Promise.all(network(nest).map(async name => {
+        list += `${name}: ${await anyStorage(nest, name,
+            `chicks in ${year}`)}\n`; 
+    }));
+    return list;
+}
+
+// The code above has a flaw, that it always returns the nest that is slowest to respond.
+// This is because list is initially set to ''
+// re-assignment of list value involves an async task on anyStorage
+// There is an async gap here 
+
+async function chicks(nest, year) {
+    let lines = network(nest).map(async name => {
+        return name + ': ' + 
+            await anyStorage(nest, name, `chicks in ${year}`);
+    });
+    return (await Promise.all(lines)).join('\n');
+}
