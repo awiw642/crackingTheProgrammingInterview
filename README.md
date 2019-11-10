@@ -1,1 +1,1 @@
-Toy problems practice preparing for a technical interview.
+Toy problems for fun!
