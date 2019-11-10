@@ -7,4 +7,4 @@ const checkPermutation = (stringA, stringB) => {
   return stringASorted === stringBSorted;
 };
 
-module.exports = checkPermutation;
+export default checkPermutation;

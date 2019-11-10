@@ -19,4 +19,4 @@ const isUnique = (string) => {
   return true;
 }
 
-module.exports = isUnique;
+export default isUnique;
